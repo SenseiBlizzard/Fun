@@ -33,7 +33,7 @@ def roll_abundance():
     Rolls a random abundance level between 1 and 9.
     Higher abundance means more potential power levels.
     """
-    return random.randint(8, 9)
+    return random.randint(1, 9)
 
 # ===========================
 # Power Level Generation
