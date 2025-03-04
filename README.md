@@ -1,2 +1,2 @@
-# Fun
-fun
+# Antithesis power genner
+:3 
