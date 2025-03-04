@@ -1,18 +1,14 @@
-import random
-from words import adjectives, nouns  # Import from words.py
+from words import adjectives, nouns  # Import adjectives and nouns from words.py
 
 # ===========================
 # Word List Setup
 # ===========================
 
-# Combine adjectives and nouns into a single WORDS list
-WORDS = adjectives + nouns
+# Convert tuples to lists and combine them into a single WORDS list
+WORDS = [word for word in list(adjectives) + list(nouns) if isinstance(word, str) and word.isalpha() and len(word) > 2]
 
-# Ensure the list contains only alphabetic characters and is longer than 2 letters
-WORDS = [word for word in WORDS if word.isalpha() and len(word) > 2]
+# ===========================
 
-# Print a sample to check if it's working
-print("Sample words:", random.sample(WORDS, 10))
 
 # ===========================
 # Power Class Definitions
