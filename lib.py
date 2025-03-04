@@ -1,15 +1,18 @@
 import random
-from english_words import get_english_words_set  # Requires "pip install english_words" to function
+from words import adjectives, nouns  # Import from words.py
 
 # ===========================
 # Word List Setup
 # ===========================
 
-# Fetch a set of English words
-raw_word_list = get_english_words_set(["web2"], lower=True)
+# Combine adjectives and nouns into a single WORDS list
+WORDS = adjectives + nouns
 
-# Filter words to ensure they contain only alphabetic characters and are longer than 2 letters
-WORDS = [word for word in raw_word_list if word.isalpha() and len(word) > 2]
+# Ensure the list contains only alphabetic characters and is longer than 2 letters
+WORDS = [word for word in WORDS if word.isalpha() and len(word) > 2]
+
+# Print a sample to check if it's working
+print("Sample words:", random.sample(WORDS, 10))
 
 # ===========================
 # Power Class Definitions
@@ -40,7 +43,7 @@ CLASSES = {
 
 TRAITS = {
     "Blaster": [
-        "Damage Blaster: Emphasizes raw offensive power. Stats: +1 attack, +1 range",
+        "Damage Blaster: Emphasizes raw offensive power. Stats: +1 attack, +1 range", 
         "Ruin Blaster: Has a lot of destructive power, used for or against the environment. Stats: +1 attack, +1 range",
         "Barrage Blaster: Produces a large amount of projectiles at the cost of accuracy or damage. Stats: -1 control",
         "Range Blaster: More dangerous or accurate when attacking from a great distance. Stats: +2 range",
