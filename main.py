@@ -53,30 +53,31 @@ def main():
                     stat_name = parts[1].strip()
                     trait_stats[stat_name.lower()] = int(stat_value)
 
-            # Display power details in expandable sections
-            with st.expander(f"Power {idx}: {theme} ({level}) - {points} Points"):
-                st.write(f"**Class:** {class_name}")
-                st.write(f"**Description:** {class_description}")
-                st.write(f"**Trait:** {trait_description}")
-                st.write(f"**Stat Cap:** {cap}")
-                st.write(f"**Points:** {points}")
+            # Display power details
+            st.write(f"### {theme} ({level}) - {points} points")
+            
+            # Print stats with +Trait if applicable
+            st.write("### Stats")
+            for stat in ["attack", "defense", "mobility", "range", "control", "endurance"]:
+                base_stat = f"0/{cap}"
+                if stat in trait_stats and trait_stats[stat] != 0:
+                    base_stat += f" +Trait"
+                st.write(f"- **{stat.capitalize()}:** {base_stat}")
 
-                # Display stats with +Trait if applicable
-                st.write("### Stats")
-                for stat in ["attack", "defense", "mobility", "range", "control", "endurance"]:
-                    base_stat = f"0/{cap}"
-                    trait_bonus = trait_stats.get(stat, 0)
-                    if trait_bonus != 0:
-                        base_stat += f" +Trait"
-                    st.write(f"- **{stat.capitalize()}:** {base_stat}")
+            # Print class and trait details
+            st.write("### CLASSES")
+            st.write(f"**{class_name}:** {class_description}")
+            st.write("### TRAITS")
+            st.write(f"{trait_description}")
 
-                # Display trait bonuses if applicable
-                if trait_stats:
-                    st.write("### Trait Bonuses (Add manually can go over cap):")
-                    for stat, value in trait_stats.items():
-                        st.write(f"- **{stat.capitalize()}:** {'+' if value >= 0 else ''}{value}")
+            # Print trait bonuses if applicable
+            if trait_stats:
+                st.write("### Trait Bonuses (Add manually can go over cap):")
+                for stat, value in trait_stats.items():
+                    st.write(f"- **{stat.capitalize()}:** {'+' if value >= 0 else ''}{value}")
 
-                st.write("-----")
+            # Separator between powers
+            st.write("-----")
 
 # ===========================
 # Run the Streamlit App
